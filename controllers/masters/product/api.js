@@ -17,26 +17,26 @@ router.get('/getProducts', function(req, res){
         search: req.query.query
     }
     let search = {};
-    ProductModule.apiModule.getProducts(query, function(data){
+    ProductModule.apiModule.getProducts(query, function(response){
         // let d = {
         //     data: data.product,
         //     count: data.count
         // }
-        res.json(data);
+        res.json(response);
     });
 });
 
 // List all products data (Paginated)
 router.post('/getProductById', function(req, res){
-    ProductModule.apiModule.getProductById(req.body.id, function(data){
-        res.json(data);
+    ProductModule.apiModule.getProductById(req.body.id, function(response){
+        res.json(response);
     });
 });
 
 // Add a product 
 router.post('/addProduct', function(req, res){
-    ProductModule.apiModule.addProduct(req, function(data){
-        res.json(data);
+    ProductModule.apiModule.addProduct(req, function(response){
+        res.json(response);
     });
 });
 
@@ -47,8 +47,18 @@ router.post('/updateProductById', function(req, res){
         product_id: req.body.product_id,
         product_type: req.body.product_type
     }
-    ProductModule.apiModule.updateProductById(data, function(){
-        res.json(data);
+    ProductModule.apiModule.updateProductById(data, function(response){
+        res.json(response);
+    })
+});
+
+// Delete Product By Id (making state as false)
+router.post('/deleteProductById', function(req, res){
+    let data = {
+        id:req.body.id
+    }
+    ProductModule.apiModule.deleteProductById(data, function(response){
+        res.json(response);
     })
 })
 // Export The Controller

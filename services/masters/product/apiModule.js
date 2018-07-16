@@ -13,6 +13,7 @@ module.exports = {
         if(criteriaObj.product_type){
             critria['PRODUCT_TYPE'] = {"$regex": criteriaObj.product_type, "$options": "i" };
         }
+        critria['DELETE_STATE'] = true;
         Models['MASTERS.ProductMaster'].getProductCount(critria, (count)=>{
             let perPage = parseInt(query.limit);
             let page = parseInt(query.page) || 0;
@@ -31,6 +32,11 @@ module.exports = {
     },
     updateProductById:function(data, nCallback){
         Models['MASTERS.ProductMaster'].updateProductById(data, (product)=>{
+            return nCallback(product);
+        });
+    },
+    deleteProductById:function(data, nCallback){
+        Models['MASTERS.ProductMaster'].deleteProductById(data, (product)=>{
             return nCallback(product);
         });
     },
