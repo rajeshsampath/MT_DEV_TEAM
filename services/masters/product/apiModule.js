@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 const Models = rootRequire('models/index')
     types = rootRequire('services/types');
-=======
-const Models = rootRequire('models/index');
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
 let _ = require('lodash');
 
 module.exports = {
@@ -28,7 +24,6 @@ module.exports = {
             })
         })
     },
-<<<<<<< HEAD
     addProduct:function(req,nCallback){
         Models['MASTERS.ProductMaster'].addProduct(req, (product)=>{
             return nCallback(product);
@@ -38,12 +33,6 @@ module.exports = {
         Models['MASTERS.ProductMaster'].updateProductById(data, (product)=>{
             return nCallback(product);
         });
-=======
-    getProductById:function(id,nCallback){
-        Models['MASTERS.ProductMaster'].getProductById(id, (product)=>{
-            return nCallback(product);
-        })
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
     },
     getProductById:function(id,nCallback){
         Models['MASTERS.ProductMaster'].getProductById(id, (product)=>{

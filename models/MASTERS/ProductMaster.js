@@ -3,21 +3,13 @@
 *@author Nahl , HariKrishna, Rajesh, Aashick, Rupam
 *@return Object<Schema>
 */
-<<<<<<< HEAD
 const mongoose = require('mongoose'),
     types = rootRequire('services/types');
-=======
-const mongoose = require('mongoose')
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
 var Schema = mongoose.Schema;
 let schema = new Schema({
-	PRODUCT_ID: { type: Number, unique: true, required: true },
-	PRODUCT_TYPE: { type: String, required: true },	
-<<<<<<< HEAD
-	CREATED_DATE : { type: Date, default:Date.now() }, 
-=======
-	CREATED_DATE : { type: Date }, 
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
+    PRODUCT_ID: { type: Number, unique: true, required: true },
+    PRODUCT_TYPE: { type: String, required: true }, 
+    CREATED_DATE : { type: Date, default:Date.now() }, 
     LAST_MODIFIED_DATE : { type: Date, default:Date.now() }
 }, { autoIndex: true, versionKey: false })
 
@@ -29,13 +21,13 @@ schema.statics.getProductCount = function(critria, cb){
         if(count && !err){
             return cb(count)
         }else{
-			return cb({status:"ERROR", response: err})
-		}
+            return cb({status:"ERROR", response: err})
+        }
     })
 }
-//	Get all the products
+//  Get all the products
 schema.statics.getProducts = function(critria,perPage, page, cb){
-	let _self = this;
+    let _self = this;
     _self.find(critria)
         .skip((perPage * page) - perPage)
         .limit(perPage)
@@ -45,9 +37,8 @@ schema.statics.getProducts = function(critria,perPage, page, cb){
             }else{
                 return cb({status:"ERROR", response: err})
             }
-	});
+    });
 }
-<<<<<<< HEAD
 schema.statics.updateProductById = function(data, cb){
     let _self = this;
     _self.findOne({_id:data.id},(err, product) => {
@@ -56,25 +47,21 @@ schema.statics.updateProductById = function(data, cb){
         product.PRODUCT_TYPE = data.product_type;
         product.save();
         return cb({status:types.SUCCESS, message: types.RECORD_UPDATE_SUCCESS});
-	});
+    });
 }
-=======
-
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
-//	Get product by id
+//  Get product by id
 schema.statics.getProductById = function(id,cb){
-	let _self = this;
-	_self.findOne({PRODUCT_ID:id},(err, doc) => {
-		if (doc && !err) {
-			return cb(doc)
-		}else{
-			return cb({status:"ERROR", response: err})
-		}
-	})
+    let _self = this;
+    _self.findOne({PRODUCT_ID:id},(err, doc) => {
+        if (doc && !err) {
+            return cb(doc)
+        }else{
+            return cb({status:"ERROR", response: err})
+        }
+    })
 }
-<<<<<<< HEAD
 
-//	Get product by id
+//  Get product by id
 schema.statics.addProduct = function(req, cb){
     let _self = this;
     
@@ -87,6 +74,4 @@ schema.statics.addProduct = function(req, cb){
         return cb({status:types.SUCCESS, message: p});
     });
 }
-=======
->>>>>>> f00a55465c8891e628bac526bd07b0a6d37a7fd9
 module.exports = mongoose.model("ProductMaster", schema, "ProductMaster")
