@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 let schema = new Schema({
     PRODUCT_ID: { type: Number, unique: true, required: true },
     PRODUCT_TYPE: { type: String, required: true },
-    DELETE_STATE: { type: Boolean, default: true},
+    DELETE_STATE: { type: Boolean, default: false},
     CREATED_DATE : { type: Date, default:Date.now() }, 
     LAST_MODIFIED_DATE : { type: Date, default:Date.now() }
 }, { autoIndex: true, versionKey: false })
@@ -54,7 +54,7 @@ schema.statics.deleteProductById = function(data, cb){
     let _self = this;
     _self.findOne({_id:data.id},(err, product) => {
         if(err) return cb({status: types.ERROR, message:types.RECORD_NOT_FOUND});
-        product.DELETE_STATE = false;
+        product.DELETE_STATE = !product.DELETE_STATE;
         product.save();
         return cb({status:types.SUCCESS, message: types.RECORD_UPDATE_SUCCESS});
     });
