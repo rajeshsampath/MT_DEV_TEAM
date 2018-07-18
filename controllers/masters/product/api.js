@@ -5,9 +5,9 @@
  * @return Object<Router>
  */
 
- var express = require('express');
+ var express = require('express'),
     router = express.Router(),
-    config = require('config');
+    config = require('config'),
     ProductModule = rootRequire('services/masters/product');
 
 // List all products data (Paginated)
