@@ -1,3 +1,4 @@
+'use strict'
 /**
  * @description Product Master Controller
  * @author Rajesh Sampath
