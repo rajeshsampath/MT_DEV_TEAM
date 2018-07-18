@@ -13,7 +13,7 @@ module.exports = {
         if(criteriaObj.product_type){
             critria['PRODUCT_TYPE'] = {"$regex": criteriaObj.product_type, "$options": "i" };
         }
-        critria['DELETE_STATE'] = true;
+        critria['DELETE_STATE'] = false;
         Models['MASTERS.ProductMaster'].getProductCount(critria, (count)=>{
             let perPage = parseInt(query.limit);
             let page = parseInt(query.page) || 0;
